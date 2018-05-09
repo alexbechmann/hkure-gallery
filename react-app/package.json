@@ -12,6 +12,7 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-scripts-ts": "2.15.1",
+    "redux-promise": "^0.5.3",
     "redux-promise-middleware": "^5.1.1",
     "typeface-roboto": "^0.0.54"
   },

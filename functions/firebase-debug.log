@@ -32,3 +32,114 @@
 [debug] [2018-05-09T16:02:35.884Z] Starting @google-cloud/functions-emulator
 [debug] [2018-05-09T16:02:38.433Z] Parsing function triggers
 [info] ✔  functions: contact: http://localhost:5000/hkure-gallery/us-central1/contact
+[debug] [2018-05-09T16:46:07.376Z] ----------------------------------------------------------------------
+[debug] [2018-05-09T16:46:07.378Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alexb\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions
+[debug] [2018-05-09T16:46:07.378Z] CLI Version:   3.17.7
+[debug] [2018-05-09T16:46:07.378Z] Platform:      win32
+[debug] [2018-05-09T16:46:07.378Z] Node Version:  v8.9.4
+[debug] [2018-05-09T16:46:07.379Z] Time:          Wed May 09 2018 18:46:07 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:07.379Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-09T16:46:07.403Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-09T16:46:07.405Z] > authorizing via signed-in user
+[debug] [2018-05-09T16:46:07.408Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-05-09T16:46:07.409Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/KcC6jz6fNfk-U5bye7ViBHyl86DE2GAHDLUUt2mwjhc',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed May 09 2018 18:46:07 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:07.673Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:46:07.678Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:46:07 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:08.475Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:46:08.476Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/hkure-gallery/tokens  
+  
+ Wed May 09 2018 18:46:08 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:09.090Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:46:09.091Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:46:09 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:10.082Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\code\bechmannlimited\hkure-gallery'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-05-09T16:46:11.229Z] Fetching environment
+[debug] [2018-05-09T16:46:11.232Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/792425538563:getServerAppConfig  
+  
+ Wed May 09 2018 18:46:11 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:46:11.799Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:46:11.800Z] Starting @google-cloud/functions-emulator
+[debug] [2018-05-09T16:46:13.829Z] Parsing function triggers
+[info] +  functions: contact: http://localhost:5000/hkure-gallery/us-central1/contact
+[debug] [2018-05-09T16:51:32.994Z] ----------------------------------------------------------------------
+[debug] [2018-05-09T16:51:32.997Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alexb\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions
+[debug] [2018-05-09T16:51:32.997Z] CLI Version:   3.17.7
+[debug] [2018-05-09T16:51:32.997Z] Platform:      win32
+[debug] [2018-05-09T16:51:32.997Z] Node Version:  v8.9.4
+[debug] [2018-05-09T16:51:32.998Z] Time:          Wed May 09 2018 18:51:32 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:51:32.998Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-09T16:51:33.013Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-09T16:51:33.015Z] > authorizing via signed-in user
+[debug] [2018-05-09T16:51:33.017Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:51:33 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:51:34.057Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:51:34.058Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/hkure-gallery/tokens  
+  
+ Wed May 09 2018 18:51:34 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:51:34.801Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:51:34.803Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:51:34 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:51:35.837Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\code\bechmannlimited\hkure-gallery'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-05-09T16:51:36.853Z] Fetching environment
+[debug] [2018-05-09T16:51:36.855Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/792425538563:getServerAppConfig  
+  
+ Wed May 09 2018 18:51:36 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:51:37.424Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:51:37.425Z] Starting @google-cloud/functions-emulator
+[debug] [2018-05-09T16:51:39.453Z] Parsing function triggers
+[info] +  functions: contact: http://localhost:5000/hkure-gallery/us-central1/contact
+[debug] [2018-05-09T16:59:47.855Z] ----------------------------------------------------------------------
+[debug] [2018-05-09T16:59:47.857Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alexb\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions
+[debug] [2018-05-09T16:59:47.857Z] CLI Version:   3.17.7
+[debug] [2018-05-09T16:59:47.857Z] Platform:      win32
+[debug] [2018-05-09T16:59:47.857Z] Node Version:  v8.9.4
+[debug] [2018-05-09T16:59:47.858Z] Time:          Wed May 09 2018 18:59:47 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:59:47.858Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-09T16:59:47.876Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-09T16:59:47.877Z] > authorizing via signed-in user
+[debug] [2018-05-09T16:59:47.879Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:59:47 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:59:48.649Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:59:48.650Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/hkure-gallery/tokens  
+  
+ Wed May 09 2018 18:59:48 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:59:49.320Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:59:49.321Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/hkure-gallery  
+  
+ Wed May 09 2018 18:59:49 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:59:50.366Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\code\bechmannlimited\hkure-gallery'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-05-09T16:59:51.876Z] Fetching environment
+[debug] [2018-05-09T16:59:51.880Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/792425538563:getServerAppConfig  
+  
+ Wed May 09 2018 18:59:51 GMT+0200 (Romance Summer Time)
+[debug] [2018-05-09T16:59:52.471Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-09T16:59:52.472Z] Starting @google-cloud/functions-emulator
+[debug] [2018-05-09T16:59:55.006Z] Parsing function triggers
+[info] +  functions: contact: http://localhost:5000/hkure-gallery/us-central1/contact

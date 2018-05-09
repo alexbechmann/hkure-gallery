@@ -11,23 +11,25 @@ import {
   WithStyles,
   CardHeader,
   Avatar,
-  Grid
+  Grid,
+  CircularProgress
 } from 'material-ui';
 import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
 import * as moment from 'moment';
 
-interface State {
-  paintings?: EntryCollection<any>;
-}
-
-interface PaintingsDispatchProps {
+export interface PaintingsDispatchProps {
   getPaintings: () => any;
 }
 
-type ClassNames = 'card' | 'avatar';
+type ClassNames = 'card' | 'avatar' | 'loader';
 
-interface Props extends WithStyles<ClassNames>, PaintingsDispatchProps {}
+export interface PaintingProps {
+  paintings?: EntryCollection<any>;
+  loadingPaintings: boolean;
+}
+
+interface Props extends WithStyles<ClassNames>, PaintingProps, PaintingsDispatchProps {}
 
 export const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
   card: {
@@ -35,22 +37,23 @@ export const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
   },
   avatar: {
     backgroundColor: theme.palette.secondary.main
+  },
+  loader: {
+    margin: '100px auto'
   }
 });
 
-class PaintingsComponent extends React.Component<Props, State> {
-  state: State = {
-    paintings: undefined
-  };
+class PaintingsComponent extends React.Component<Props> {
   componentDidMount() {
-    this.props.getPaintings;
+    this.props.getPaintings();
   }
   render() {
     return (
       <div>
         <Grid container spacing={24}>
-          {this.state.paintings ? (
-            this.state.paintings.items.map(painting => {
+          {this.props.loadingPaintings && <CircularProgress className={this.props.classes.loader} />}
+          {this.props.paintings ? (
+            this.props.paintings.items.map(painting => {
               return (
                 <Grid item xs={12} sm={6} lg={4} key={painting.sys.id}>
                   <Card className={this.props.classes.card}>

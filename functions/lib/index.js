@@ -1,10 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
 exports.contact = functions.https.onRequest((request, response) => {
-    response.send("Mail sent!");
+    response.send('Mail sent!');
 });
 //# sourceMappingURL=index.js.map
