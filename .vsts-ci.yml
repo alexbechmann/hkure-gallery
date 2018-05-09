@@ -16,7 +16,9 @@ steps:
 
 - task: Npm@1
   inputs:
+    command: custom
     verbose: false
+    customCommand: 'install firebase-tools -g'
 
 - task: CmdLine@1
   inputs:
