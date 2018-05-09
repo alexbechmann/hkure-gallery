@@ -10,7 +10,8 @@ import {
   withStyles,
   WithStyles,
   CardHeader,
-  Avatar
+  Avatar,
+  Grid
 } from 'material-ui';
 import { paintingService } from './painting.service';
 import { EntryCollection } from 'contentful';
@@ -29,7 +30,7 @@ export const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
     marginBottom: theme.spacing.unit * 2
   },
   avatar: {
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.secondary.main
   }
 });
 
@@ -47,47 +48,51 @@ class PaintingsComponent extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        {this.state.paintings ? (
-          this.state.paintings.items.map(painting => {
-            return (
-              <Card key={painting.sys.id} className={this.props.classes.card}>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe" className={this.props.classes.avatar}>
-                      H
-                    </Avatar>
-                  }
-                  title={painting.fields.title}
-                  subheader="September 14, 2016"
-                />
-                <CardMedia
-                  image={painting.fields.images[0].fields.file.url}
-                  style={{
-                    height: '250px'
-                  }}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="headline" component="h2">
-                    {painting.fields.title}
-                  </Typography>
-                  <Typography
-                    component="p"
-                    dangerouslySetInnerHTML={{
-                      __html: parseMarkdown(painting.fields.description)
-                    }}
-                  />
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="secondary">
-                    Contact for price
-                  </Button>
-                </CardActions>
-              </Card>
-            );
-          })
-        ) : (
-          <span />
-        )}
+        <Grid container spacing={24}>
+          {this.state.paintings ? (
+            this.state.paintings.items.map(painting => {
+              return (
+                <Grid item xs={12} sm={6} lg={4} key={painting.sys.id}>
+                  <Card className={this.props.classes.card}>
+                    <CardHeader
+                      avatar={
+                        <Avatar aria-label="Recipe" className={this.props.classes.avatar}>
+                          H
+                        </Avatar>
+                      }
+                      title={painting.fields.title}
+                      subheader="September 14, 2016"
+                    />
+                    <CardMedia
+                      image={painting.fields.images[0].fields.file.url}
+                      style={{
+                        height: '250px'
+                      }}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="headline" component="h2">
+                        {painting.fields.title}
+                      </Typography>
+                      <Typography
+                        component="p"
+                        dangerouslySetInnerHTML={{
+                          __html: parseMarkdown(painting.fields.description)
+                        }}
+                      />
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" color="secondary">
+                        Contact for price
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })
+          ) : (
+            <span />
+          )}
+        </Grid>
       </div>
     );
   }

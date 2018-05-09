@@ -1,14 +1,14 @@
 import { createMuiTheme } from 'material-ui';
-import { teal, pink } from 'material-ui/colors';
+import { pink, teal } from 'material-ui/colors';
 
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: teal[600],
+      main: teal[700],
       contrastText: '#fff'
     },
     secondary: {
-      main: pink[800],
+      main: pink[700],
       contrastText: '#fff'
     }
   }
