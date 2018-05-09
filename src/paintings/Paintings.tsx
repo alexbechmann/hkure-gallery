@@ -16,6 +16,7 @@ import {
 import { paintingService } from './painting.service';
 import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
+import * as moment from 'moment';
 
 interface State {
   paintings?: EntryCollection<any>;
@@ -61,7 +62,7 @@ class PaintingsComponent extends React.Component<Props, State> {
                         </Avatar>
                       }
                       title={painting.fields.title}
-                      subheader="September 14, 2016"
+                      subheader={moment(painting.sys.createdAt).format('MMMM Do YYYY')}
                     />
                     <CardMedia
                       image={painting.fields.images[0].fields.file.url}
