@@ -57,7 +57,7 @@ class PaintingsComponent extends React.Component<Props> {
           {this.props.paintings ? (
             this.props.paintings.items.map(painting => {
               return (
-                <Grid item xs={12} sm={6} lg={4} xl={2} key={painting.sys.id}>
+                <Grid item xs={12} sm={6} lg={3} xl={2} key={painting.sys.id}>
                   <Card className={this.props.classes.card}>
                     <CardHeader
                       avatar={

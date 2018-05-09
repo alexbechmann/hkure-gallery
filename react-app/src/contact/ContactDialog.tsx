@@ -7,8 +7,11 @@ import {
   DialogContentText,
   Button,
   TextField,
-  CircularProgress
+  CircularProgress,
+  Snackbar,
+  IconButton
 } from 'material-ui';
+import * as Icons from '@material-ui/icons';
 
 export interface ContactDialogProps {
   open: boolean;
@@ -19,6 +22,7 @@ export interface ContactDialogProps {
 export interface ContactDialogDispatchProps {
   sendMessage: (message: string) => any;
   closeContactDialog: () => any;
+  clearSuccessMessage: () => any;
 }
 
 interface Props extends ContactDialogProps, ContactDialogDispatchProps {}
@@ -30,23 +34,49 @@ export class ContactDialog extends React.Component<Props> {
   }
   render() {
     return (
-      <Dialog open={this.props.open} onClose={this.props.closeContactDialog} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates occasionally.
-          </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Email Address" type="email" fullWidth />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.props.closeContactDialog} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.sendMessage} color="primary" disabled={this.props.sendingMessage}>
-            {this.props.sendingMessage ? <CircularProgress /> : 'Send'}
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <div>
+        <Dialog open={this.props.open} onClose={this.props.closeContactDialog} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Contact Henriette Kure</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Enter message to send. You can expect a response within the next few days :)
+            </DialogContentText>
+            <TextField autoFocus margin="dense" label="Message" type="email" fullWidth />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.props.closeContactDialog} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.sendMessage} color="primary" disabled={this.props.sendingMessage}>
+              {this.props.sendingMessage ? <CircularProgress size={24} /> : 'Send'}
+            </Button>
+          </DialogActions>
+        </Dialog>
+        {this.renderSnackbar()}
+      </div>
+    );
+  }
+
+  renderSnackbar() {
+    return (
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right'
+        }}
+        open={this.props.messageSuccess}
+        autoHideDuration={6000}
+        onClose={this.props.clearSuccessMessage}
+        ContentProps={{
+          'aria-describedby': 'message-id'
+        }}
+        message={<span id="message-id">Message sent!</span>}
+        action={[
+          <IconButton key="close" aria-label="Close" color="inherit" onClick={this.props.clearSuccessMessage}>
+            <Icons.Close />
+          </IconButton>
+        ]}
+      />
     );
   }
 

@@ -5,6 +5,11 @@ const corsResponse = cors({ origin: true });
 
 export const contact = functions.https.onRequest((req, res) => {
   corsResponse(req, res, () => {
-    res.send('Mail sent.');
+    if (req.body && req.body.message) {
+      console.log(`Received message: ${req.body.message}`);
+      res.send('Mail sent.');
+    } else {
+      res.status(500).send();
+    }
   });
 });

@@ -1,6 +1,12 @@
 import { ContactState } from './contact.state';
 import { AnyAction } from 'redux';
-import { SENDING_MESSAGE, SEND_MESSAGE, OPEN_CONTACT_DIALOG, CLOSE_CONTACT_DIALOG } from './contact.actions';
+import {
+  SENDING_MESSAGE,
+  SEND_MESSAGE,
+  OPEN_CONTACT_DIALOG,
+  CLOSE_CONTACT_DIALOG,
+  CLEAR_MESSAGE_SUCCESS_MESSAGE
+} from './contact.actions';
 
 const defaultState: ContactState = {
   sendingMessage: false,
@@ -34,6 +40,12 @@ export function contactReducer(state: ContactState = defaultState, action: AnyAc
       return {
         ...state,
         contactDialogOpen: false
+      };
+    }
+    case CLEAR_MESSAGE_SUCCESS_MESSAGE: {
+      return {
+        ...state,
+        messageSuccess: false
       };
     }
     default: {
