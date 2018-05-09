@@ -6,12 +6,12 @@ queue:
 steps:
 - task: Npm@1
   inputs:
-   workingDir: 'react-app'
+    workingDir: 'react-app'
     verbose: false
 
 - task: Npm@1
   inputs:
-   workingDir: 'functions'
+    workingDir: 'functions'
     verbose: false
 
 - task: Npm@1
