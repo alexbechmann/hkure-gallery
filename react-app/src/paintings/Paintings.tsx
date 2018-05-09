@@ -17,9 +17,11 @@ import {
 import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
 import * as moment from 'moment';
+import { ContactDialogConnected } from 'contact/ContactDialogConnected';
 
 export interface PaintingsDispatchProps {
   getPaintings: () => any;
+  openContactDialog: () => any;
 }
 
 type ClassNames = 'card' | 'avatar' | 'loader';
@@ -55,7 +57,7 @@ class PaintingsComponent extends React.Component<Props> {
           {this.props.paintings ? (
             this.props.paintings.items.map(painting => {
               return (
-                <Grid item xs={12} sm={6} lg={4} key={painting.sys.id}>
+                <Grid item xs={12} sm={6} lg={4} xl={2} key={painting.sys.id}>
                   <Card className={this.props.classes.card}>
                     <CardHeader
                       avatar={
@@ -84,7 +86,7 @@ class PaintingsComponent extends React.Component<Props> {
                       />
                     </CardContent>
                     <CardActions>
-                      <Button size="small" color="secondary">
+                      <Button size="small" color="secondary" onClick={this.props.openContactDialog}>
                         Contact for price
                       </Button>
                     </CardActions>
@@ -96,6 +98,7 @@ class PaintingsComponent extends React.Component<Props> {
             <span />
           )}
         </Grid>
+        <ContactDialogConnected />
       </div>
     );
   }
