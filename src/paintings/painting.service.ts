@@ -3,6 +3,6 @@ import { EntryCollection } from 'contentful';
 
 export const paintingService = {
   getPaintings(): Promise<EntryCollection<any>> {
-    return contentfulService.client().getEntries('Painting');
+    return contentfulService.client().getEntries('painting');
   }
 };
