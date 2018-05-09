@@ -1,34 +1,19 @@
 {
-  "name": "hkure-gallery",
+  "name": "hkure-gallery-dev",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@material-ui/icons": "^1.0.0-beta.43",
-    "contentful": "^6.1.0",
-    "material-ui": "^1.0.0-beta.46",
-    "moment": "^2.22.1",
-    "parse-markdown-js": "^1.3.6",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts-ts": "2.15.1",
-    "typeface-roboto": "^0.0.54"
-  },
   "scripts": {
-    "start": "npm-run-all -p start:react-app prettier:watch",
-    "start:react-app": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "prettier:test": "prettier --config ./.prettierrc --list-different \"src/**/*.{ts*,md,css}\"",
+    "start": "npm-run-all -p start:react-app start:functions prettier:watch",
+    "postinstall": "npm-run-all -p install:functions install:react-app",
+    "install:functions": "cd ./functions && npm install",
+    "start:functions": "cd ./functions && npm run serve",
+    "start:react-app": "cd ./react-app && npm start",
+    "install:react-app": "cd ./react-app && npm install",
+    "prettier:test": "prettier --config ./.prettierrc --list-different \"{react-app,functions}/**/*.{ts*,md,css}\"",
     "prettier:watch": "onchange \"**/*.ts*\" \"**/*.md*\" \"**/*.css*\" -- prettier --write {{changed}}",
-    "prettier": "prettier --config ./.prettierrc --write  \"src/**/*.{ts*,md,css}\""
+    "prettier": "prettier --config ./.prettierrc --write  \"{react-app,functions}/**/*.{ts*,md,css}\""
   },
   "devDependencies": {
-    "@babel/runtime": "^7.0.0-beta.46",
-    "@types/jest": "^22.2.3",
-    "@types/node": "^10.0.6",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
     "npm-run-all": "^4.1.3",
     "onchange": "^4.0.0",
     "prettier": "^1.12.1",
