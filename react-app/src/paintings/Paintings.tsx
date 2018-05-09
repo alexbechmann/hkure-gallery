@@ -13,7 +13,6 @@ import {
   Avatar,
   Grid
 } from 'material-ui';
-import { paintingService } from './painting.service';
 import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
 import * as moment from 'moment';
@@ -22,9 +21,13 @@ interface State {
   paintings?: EntryCollection<any>;
 }
 
+interface PaintingsDispatchProps {
+  getPaintings: () => any;
+}
+
 type ClassNames = 'card' | 'avatar';
 
-interface Props extends WithStyles<ClassNames> {}
+interface Props extends WithStyles<ClassNames>, PaintingsDispatchProps {}
 
 export const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
   card: {
@@ -40,11 +43,7 @@ class PaintingsComponent extends React.Component<Props, State> {
     paintings: undefined
   };
   componentDidMount() {
-    paintingService.getPaintings().then(paintings =>
-      this.setState({
-        paintings
-      })
-    );
+    this.props.getPaintings;
   }
   render() {
     return (
