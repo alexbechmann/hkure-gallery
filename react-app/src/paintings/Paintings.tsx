@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   Button,
@@ -18,6 +17,7 @@ import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
 import * as moment from 'moment';
 import { ContactDialogConnected } from 'contact/ContactDialogConnected';
+import Image from 'material-ui-image';
 
 export interface PaintingsDispatchProps {
   getPaintings: () => any;
@@ -68,12 +68,7 @@ class PaintingsComponent extends React.Component<Props> {
                       title={painting.fields.title}
                       subheader={moment(painting.sys.createdAt).format('MMMM Do YYYY')}
                     />
-                    <CardMedia
-                      image={painting.fields.images[0].fields.file.url}
-                      style={{
-                        height: '250px'
-                      }}
-                    />
+                    <Image src={painting.fields.images[0].fields.file.url} aspectRatio={16 / 9} />
                     <CardContent>
                       <Typography gutterBottom variant="headline" component="h2">
                         {painting.fields.title}
