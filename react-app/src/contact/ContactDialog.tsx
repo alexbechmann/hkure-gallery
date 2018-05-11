@@ -6,54 +6,71 @@ import {
   DialogContent,
   DialogContentText,
   Button,
-  TextField,
   CircularProgress,
   Snackbar,
-  IconButton
+  IconButton,
+  FormControl
 } from 'material-ui';
 import * as Icons from '@material-ui/icons';
+import { combineContainers } from 'combine-containers';
+import { connect } from 'react-redux';
+import { reduxForm, InjectedFormProps, Field } from 'redux-form';
+import { sendMessage, closeContactDialog, clearSuccessMessage } from 'contact/state/contact.actions';
+import { AppState } from 'shared/app.state';
+const ReduxFormMaterialFields = require('redux-form-material-ui');
+const required = (value: any) => (value ? undefined : 'Required');
 
-export interface ContactDialogProps {
+interface ContactDialogProps {
   open: boolean;
   sendingMessage: boolean;
   messageSuccess: boolean;
 }
 
-export interface ContactDialogDispatchProps {
+interface ContactDialogDispatchProps {
   sendMessage: (message: string) => any;
   closeContactDialog: () => any;
   clearSuccessMessage: () => any;
 }
 
-interface Props extends ContactDialogProps, ContactDialogDispatchProps {}
+interface Props extends ContactDialogProps, ContactDialogDispatchProps, InjectedFormProps {}
 
-export class ContactDialog extends React.Component<Props> {
+class ContactDialogComponent extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.sendMessage = this.sendMessage.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
+
   render() {
     return (
-      <div>
+      <form id="contact-form" onSubmit={this.props.handleSubmit(this.handleOnSubmit)}>
         <Dialog open={this.props.open} onClose={this.props.closeContactDialog} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Contact Henriette Kure</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Enter message to send. You can expect a response within the next few days :)
             </DialogContentText>
-            <TextField autoFocus margin="dense" label="Message" type="email" fullWidth />
+            <FormControl fullWidth>
+              <Field
+                autoFocus
+                margin="dense"
+                label="Message"
+                name="message"
+                component={ReduxFormMaterialFields.TextField}
+                validate={required}
+              />
+            </FormControl>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.props.closeContactDialog} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.sendMessage} color="primary" disabled={this.props.sendingMessage}>
+            <Button color="primary" disabled={this.props.sendingMessage} type="submit" form="contact-form">
               {this.props.sendingMessage ? <CircularProgress size={24} /> : 'Send'}
             </Button>
           </DialogActions>
         </Dialog>
         {this.renderSnackbar()}
-      </div>
+      </form>
     );
   }
 
@@ -80,7 +97,25 @@ export class ContactDialog extends React.Component<Props> {
     );
   }
 
-  sendMessage() {
-    this.props.sendMessage('test');
+  handleOnSubmit(formData: any) {
+    this.props.sendMessage(formData.message);
   }
 }
+
+function mapStateToProps(state: AppState): ContactDialogProps {
+  return {
+    open: state.contact.contactDialogOpen,
+    messageSuccess: state.contact.messageSuccess,
+    sendingMessage: state.contact.sendingMessage
+  };
+}
+
+const mapDispatchToProps: ContactDialogDispatchProps = { sendMessage, closeContactDialog, clearSuccessMessage };
+
+export const ContactDialog = combineContainers(ContactDialogComponent, [
+  connect(mapStateToProps, mapDispatchToProps),
+  reduxForm({
+    form: 'contactForm',
+    destroyOnUnmount: false
+  })
+]);

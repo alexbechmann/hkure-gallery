@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PaintingsConnected } from './paintings/PaintingsConnected';
+import { Paintings } from './paintings/Paintings';
 import { AppBar, Toolbar, Typography, MuiThemeProvider } from 'material-ui';
 import { theme } from './styles/theme';
 import { store } from 'shared/root.store';
@@ -19,7 +19,7 @@ class App extends React.Component {
               </Toolbar>
             </AppBar>
             <div className="container">
-              <PaintingsConnected />
+              <Paintings />
             </div>
           </div>
         </MuiThemeProvider>

@@ -16,24 +16,29 @@ import {
 import { EntryCollection } from 'contentful';
 import parseMarkdown from 'parse-markdown-js';
 import * as moment from 'moment';
-import { ContactDialogConnected } from 'contact/ContactDialogConnected';
+import { ContactDialog } from 'contact/ContactDialog';
 import Image from 'material-ui-image';
+import { getPaintings } from 'paintings/state/painting.actions';
+import { openContactDialog } from 'contact/state/contact.actions';
+import { AppState } from 'shared/app.state';
+import { combineContainers } from 'combine-containers';
+import { connect } from 'react-redux';
 
-export interface PaintingsDispatchProps {
+interface PaintingsDispatchProps {
   getPaintings: () => any;
   openContactDialog: () => any;
 }
 
 type ClassNames = 'card' | 'avatar' | 'loader';
 
-export interface PaintingProps {
+interface PaintingProps {
   paintings?: EntryCollection<any>;
   loadingPaintings: boolean;
 }
 
 interface Props extends WithStyles<ClassNames>, PaintingProps, PaintingsDispatchProps {}
 
-export const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
+const paintingsStyles: StyleRulesCallback<ClassNames> = theme => ({
   card: {
     marginBottom: theme.spacing.unit * 2
   },
@@ -57,7 +62,7 @@ class PaintingsComponent extends React.Component<Props> {
           {this.props.paintings ? (
             this.props.paintings.items.map(painting => {
               return (
-                <Grid item xs={12} sm={6} lg={3} xl={2} key={painting.sys.id}>
+                <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={painting.sys.id}>
                   <Card className={this.props.classes.card}>
                     <CardHeader
                       avatar={
@@ -93,10 +98,22 @@ class PaintingsComponent extends React.Component<Props> {
             <span />
           )}
         </Grid>
-        <ContactDialogConnected />
+        <ContactDialog />
       </div>
     );
   }
 }
 
-export const Paintings = withStyles(paintingsStyles, { withTheme: true })(PaintingsComponent);
+function mapStateToProps(state: AppState): PaintingProps {
+  return {
+    paintings: state.painting.paintings,
+    loadingPaintings: state.painting.loadingPaintings
+  };
+}
+
+const mapDispatchToProps: PaintingsDispatchProps = { getPaintings, openContactDialog };
+
+export const Paintings = combineContainers(PaintingsComponent, [
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(paintingsStyles, { withTheme: true })
+]);
