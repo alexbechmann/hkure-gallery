@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
     "axios": "^0.18.0",
-    "combine-containers": "0.0.2-alpha",
+    "combine-containers": "0.0.3-alpha",
     "contentful": "^6.1.0",
     "material-ui": "^1.0.0-beta.46",
     "material-ui-image": "^3.0.0-pre.7",

@@ -9,14 +9,17 @@ import {
   CircularProgress,
   Snackbar,
   IconButton,
-  FormControl
+  FormControl,
+  withStyles,
+  StyleRulesCallback,
+  WithStyles
 } from 'material-ui';
 import * as Icons from '@material-ui/icons';
-import { combineContainers } from 'combine-containers';
 import { connect } from 'react-redux';
 import { reduxForm, InjectedFormProps, Field } from 'redux-form';
 import { sendMessage, closeContactDialog, clearSuccessMessage } from 'contact/state/contact.actions';
 import { AppState } from 'shared/app.state';
+import { combineContainers } from 'combine-containers';
 const ReduxFormMaterialFields = require('redux-form-material-ui');
 const required = (value: any) => (value ? undefined : 'Required');
 
@@ -32,7 +35,20 @@ interface ContactDialogDispatchProps {
   clearSuccessMessage: () => any;
 }
 
-interface Props extends ContactDialogProps, ContactDialogDispatchProps, InjectedFormProps {}
+type StyleClassNames = 'content';
+
+const styles: StyleRulesCallback<StyleClassNames> = theme => ({
+  content: {
+    overflowX: 'hidden',
+    minHeight: '100px'
+  }
+});
+
+interface Props
+  extends ContactDialogProps,
+    ContactDialogDispatchProps,
+    InjectedFormProps,
+    WithStyles<StyleClassNames> {}
 
 class ContactDialogComponent extends React.Component<Props> {
   constructor(props: Props) {
@@ -45,7 +61,7 @@ class ContactDialogComponent extends React.Component<Props> {
       <form id="contact-form" onSubmit={this.props.handleSubmit(this.handleOnSubmit)}>
         <Dialog open={this.props.open} onClose={this.props.closeContactDialog} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Contact Henriette Kure</DialogTitle>
-          <DialogContent>
+          <DialogContent className={this.props.classes.content}>
             <DialogContentText>
               Enter message to send. You can expect a response within the next few days :)
             </DialogContentText>
@@ -116,6 +132,7 @@ export const ContactDialog = combineContainers(ContactDialogComponent, [
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
     form: 'contactForm',
-    destroyOnUnmount: false
-  })
+    destroyOnUnmount: true
+  }),
+  withStyles(styles, { withTheme: true })
 ]);
